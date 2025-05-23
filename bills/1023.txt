@@ -1,0 +1,9 @@
+It Welcome CodeWithkiran Mini Mall
+ Bill Number:1023
+ Customer Name:
+ Phone Number:
+ Customer Email:
+=====================================================
+ Products			QTY	Price
+=====================================================
+

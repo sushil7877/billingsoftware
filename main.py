@@ -29,18 +29,12 @@ class Bill_App:
         self.tax_input=StringVar() 
         self.total=StringVar()
 
-        def Categories(self, event):
-            selected_cat = self.Combo_Category.get()
-            print("Selected category:", selected_cat)
-        # You can later update subcategories or products based on this
-
-
         # Product Categories list
         self.Categories=["Select Option","Clothing","LifeStyle","Mobiles"]
 
         # SubCatClothing
-        self.SubCatClothing=["Pant","T=Shirt","Shirt"] 
-        self.pant=["Levis","Mufti","Spykar"] 
+        self.SubCatClothing=["Pant","T-Shirt","Shirt"] 
+        self.Pant=["Levis","Mufti","Spykar"] 
         self.price_levis=5000
         self.price_mufti=7000
         self.price_spaykar=8000
@@ -55,8 +49,8 @@ class Bill_App:
         self.price_Louis=2700
         self.price_Park=1740
 
-        # SubCatLifStyle
-        self.SubCatLifStyle=['Bath Soap','Face Creame','Hair Oil'] 
+        # SubCatLifeStyle
+        self.SubCatLifeStyle=['Bath Soap','Face Creame','Hair Oil'] 
         self.Bath_soap=['LifeBoy','Lux','Santoor','Pearl'] 
         self.price_life=float(20) 
         self.price_lux=20
@@ -146,19 +140,19 @@ class Bill_App:
         Cust_Frame=LabelFrame(Main_Frame,text="Customer",font=("times new roman",12, "bold"),bg="white",fg="red")
         Cust_Frame.place(x=10,y=5, width=350, height=140)
 
-        self.lbl_mob=Label(Cust_Frame,text="Mobile No.", font=("times new roman",12,"bold"),bg="white")
+        self.lbl_mob=Label(Cust_Frame,text="Mobile No.", font=("times new roman",12,"bold"),bg="white",bd=4, fg="black")
         self.lbl_mob.grid(row=0,column=0,stick=W,padx=5,pady=2)
 
         self.entry_mob=ttk.Entry(Cust_Frame,textvariable=self.c_phon,font=("times new roman",10,"bold"),width=24)
-        self.entry_mob.grid(row=0,column=1)
+        self.entry_mob.grid(row=0,column=1,sticky=W, padx=5,pady=2)
 
-        self.lblCustName=Label(Cust_Frame,font=('arial',12,'bold'),bg="white",text="Customer Name",bd=4) 
+        self.lblCustName=Label(Cust_Frame,font=('arial',12,'bold'),bg="white",text="Customer Name",bd=4, fg="black")
         self.lblCustName.grid(row=1,column=0,sticky=W,padx=5,pady=2)
 
         self.txtCustName=ttk.Entry(Cust_Frame,textvariable=self.c_name,font=('arial',10,'bold'),width=24) 
         self.txtCustName.grid(row=1, column=1,sticky=W, padx=5,pady=2)
 
-        self.lblEmail=Label(Cust_Frame,font=('arial',12,'bold'),bg="white",text="Email",bd=4) 
+        self.lblEmail=Label(Cust_Frame,font=('arial',12,'bold'),bg="white",text="Email",bd=4, fg="black")
         self.lblEmail.grid(row=2,column=0,sticky=W,padx=5,pady=2)
 
         self.txtEmail=ttk.Entry(Cust_Frame,textvariable=self.c_email,font=('arial',10,'bold'),width=24)
@@ -176,7 +170,7 @@ class Bill_App:
         self.Combo_Category=ttk.Combobox(Product_Frame,value=self.Categories,font=('arial',10,'bold'),width=24,state="readonly")
         self.Combo_Category.current(0)
         self.Combo_Category.grid(row=0,column=1,sticky=W,padx=5,pady=2)
-        self.Combo_Category.bind("<<ComboboxSelected>>",self.Categories)
+        self.Combo_Category.bind("<<ComboboxSelected>>",self.SelectCategories)
 
 
         # SubCategory
@@ -239,15 +233,12 @@ class Bill_App:
 
         self.lblBill = Label(Search_Frame, font=('arial', 12, 'bold'), fg="white", bg="red", text="Bill Number") 
         self.lblBill.grid(row=0, column=0, sticky=W, padx=1)
-        
-        self.lblBill = Label(Search_Frame, font=('arial', 12, 'bold'), fg="white", bg="red", text="Bill Number")
-        self.lblBill.grid(row=0, column=0, sticky=W, padx=1)
 
 
         self.txt_Entry_Search=ttk.Entry(Search_Frame,textvariable=self.search_bill,font=('arial',10,'bold'),width=24) 
         self.txt_Entry_Search.grid(row=0,column=1,sticky=W,padx=2)
 
-        self.BtnSearch = Button(Search_Frame,command=self.find_bill,text="Search",font=('arial', 10, 'bold'), bg="orangered", fg="white", width=15, cursor="hand2") 
+        self.BtnSearch = Button(Search_Frame,command=self.find_bill,text="Search",font=('arial', 10, 'bold'), bg="orangered", fg="black", width=15, cursor="hand2") 
         self.BtnSearch.grid(row=0, column=2)
 
         # RightFrame Bill Aria
@@ -264,19 +255,19 @@ class Bill_App:
         Bottom_Frame=LabelFrame(Main_Frame,text="Bill Counter",font=("times new roman", 12,"bold"),bg="white",fg="red")
         Bottom_Frame.place(x=0,y=485,width=1520,height=125)
 
-        self.lblSubTotal=Label(Bottom_Frame,font=('arial',12,'bold'),bg="white",text="Sub Total",bd=4) 
+        self.lblSubTotal=Label(Bottom_Frame,font=('arial',12,'bold'),bg="white",text="Sub Total",bd=4,fg="black")
         self.lblSubTotal.grid(row=0,column=0,sticky=W,padx=5,pady=2)
 
         self.EntySubTotal=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
         self.EntySubTotal.grid(row=0,column=1,sticky=W,padx=5,pady=2)
 
-        self.lbl_tax=Label(Bottom_Frame, font=('arial',12,'bold'),bg="white",text="Gov Tax",bd=4) 
+        self.lbl_tax=Label(Bottom_Frame, font=('arial',12,'bold'),bg="white",text="Gov Tax",bd=4,fg="black")
         self.lbl_tax.grid(row=1,column=0,sticky=W,padx=5,pady=2)
                         
         self.txt_tax=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
         self.txt_tax.grid(row=1,column=1,sticky=W,padx=5,pady=2)
 
-        self.lblAmountTotal=Label(Bottom_Frame,font=('arial',12,'bold'),bg="white",text="Total",bd=4) 
+        self.lblAmountTotal=Label(Bottom_Frame,font=('arial',12,'bold'),bg="white",text="Total",bd=4,fg="black")
         self.lblAmountTotal.grid(row=2,column=0,sticky=W,padx=5,pady=2)
 
         self.txtAmountTotal=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
@@ -286,22 +277,22 @@ class Bill_App:
         Btn_Frame=Frame(Bottom_Frame,bd=2,bg="white")
         Btn_Frame.place(x=320,y=0)
 
-        self.BtnAddToCart=Button(Btn_Frame,command=self.AddItem,height=2,text="Add To Cart",font=('arial', 15, 'bold'),bg="orangered",fg="white",width=15,cursor="hand2") 
+        self.BtnAddToCart=Button(Btn_Frame,command=self.AddItem,height=2,text="Add To Cart",font=('arial', 15, 'bold'),bg="red",fg="black",width=15,cursor="hand2") 
         self.BtnAddToCart.grid(row=0,column=0)
 
-        self.Btngenerate_bill=Button(Btn_Frame,command=self.gen_bill,height=2,text="Generate Bill",font=('arial',15,"bold"),bg="orangered",fg="white",width=15,cursor="hand2")
+        self.Btngenerate_bill=Button(Btn_Frame,command=self.gen_bill,height=2,text="Generate Bill",font=('arial',15,"bold"),bg="orangered",fg="black",width=15,cursor="hand2")
         self.Btngenerate_bill.grid(row=0,column=1)
 
-        self.BtnSave=Button(Btn_Frame,command=self.save_bill,height=2,text="Save Bill",font=('arial',15,'bold'),bg="orangered",fg="white",width=15,cursor="hand2") 
+        self.BtnSave=Button(Btn_Frame,command=self.save_bill,height=2,text="Save Bill",font=('arial',15,'bold'),bg="orangered",fg="black",width=15,cursor="hand2") 
         self.BtnSave.grid(row=0,column=2)
 
-        self.BtnPrint=Button(Btn_Frame,command=self.iprint,height=2,text="Print",font=('arial',15,"bold"),bg="orangered",fg="white",width=15,cursor="hand2")
+        self.BtnPrint=Button(Btn_Frame,command=self.iprint,height=2,text="Print",font=('arial',15,"bold"),bg="orangered",fg="black",width=15,cursor="hand2")
         self.BtnPrint.grid(row=0,column=3)
 
-        self.BtnClear=Button(Btn_Frame,command=self.clear,height=2,text="Clear",font=('arial',15,'bold'),bg="orangered",fg="white",width=15,cursor="hand2")
+        self.BtnClear=Button(Btn_Frame,command=self.clear,height=2,text="Clear",font=('arial',15,'bold'),bg="orangered",fg="black",width=15,cursor="hand2")
         self.BtnClear.grid(row=0,column=4)
 
-        self.BtnExit=Button(Btn_Frame,command=self.root.destroy,height=2,text="Exit",font=('arial',15,"bold"),bg="orangered",fg="white",width=15,cursor="hand2") 
+        self.BtnExit=Button(Btn_Frame,command=self.root.destroy,height=2,text="Exit",font=('arial',15,"bold"),bg="orangered",fg="black",width=15,cursor="hand2") 
         self.BtnExit.grid(row=0,column=5)
         self.welcome()
 
@@ -367,8 +358,8 @@ class Bill_App:
     def iprint(self):
         q=self.textarea.get(1.0,"end-1c") 
         filename=tempfile.mktemp('.txt') 
-        open(filename,'w').write(q)
-        os.startfile(filename,"print")
+        # open(filename,'w').write(q)
+        # os.startfile(filename,"print")
 
 
     def find_bill(self):
@@ -404,74 +395,70 @@ class Bill_App:
     
 
     
-    def Categories(self,event=""):
-        if self.Combo_Category.get()=="Clothing":
-            self.ComboSubCategory.config(value=self.SubCatClothing)
+    def SelectCategories(self, event=""):
+        selected = self.Combo_Category.get()
+        print("Cat:", selected)
+
+        if selected == "Clothing":
+            self.ComboSubCategory.config(values=self.SubCatClothing)
             self.ComboSubCategory.current(0)
 
-        if self.Combo_Category.get()=="Lifestyle":
-            self.ComboSubCategory.config(value=self.SubCatLifestyle)  # ❌ Wrong variable name
+        elif selected == "Lifestyle":
+            self.ComboSubCategory.config(values=self.SubCatLifestyle)
             self.ComboSubCategory.current(0)
 
 
-        if self.Combo_Category.get()=="Mobiles":
+        if selected == "Mobiles":
             self.ComboSubCategory.config(value=self.SubCatMobiles)
             self.ComboSubCategory.current(0)
 
 
-    def Product_add(self,event=""):
-        if self.ComboSubCategory.get()=="Pant":
-            self.ComboProduct.config(value=self.Pant) 
-            self.ComboProduct.current(0)
+    def Product_add(self, event=""):
+        sub_category = self.ComboSubCategory.get()
+        print("Sub Cat:", sub_category)
 
-        if self.ComboSubCategory.get()=="T=Shirt":
-            self.ComboProduct.config(value=self.T_Shirt)
-            self.ComboProduct.current (0)
+        # Clothing
+        if sub_category == "Pant":
+            self.ComboProduct.config(values=self.Pant)
+        elif sub_category == "T-Shirt":
+            self.ComboProduct.config(values=self.T_shirt)
+        elif sub_category == "Shirt":
+            self.ComboProduct.config(values=self.Shirt)
 
-        if self.ComboSubCategory.get()=="Shirt":
-            self.ComboProduct.config(value=self.Shirt)
-            self.ComboProduct.current(0)
-
-        # LifeStyle
-        if self.ComboSubCategory.get()=="Bath Soap":
-            self.ComboProduct.config(value=self.Bath_soap)
-            self.ComboProduct.current(0)
-
-        if self.ComboSubCategory.get()=="Face Creame":
-            self.ComboProduct.config(value=self.Face_creame)
-            self.ComboProduct.current(0)
-
-        if self.ComboSubCategory.get()=="Hair Oil":
-            self.ComboProduct.config(value=self.Hair_oil)
-            self. ComboProduct.current(0)
+        # Lifestyle
+        elif sub_category == "Bath Soap":
+            self.ComboProduct.config(values=self.Bath_soap)
+        elif sub_category == "Face Cream":
+            self.ComboProduct.config(values=self.Face_creame)
+        elif sub_category == "Hair Oil":
+            self.ComboProduct.config(values=self.Hair_oil)
 
         # Mobile
-        if self.ComboSubCategory.get()=="Iphone":
-            self.ComboProduct.config(value=self.Iphone)
-            self.ComboProduct.current(0)
+        elif sub_category == "Iphone":
+            self.ComboProduct.config(values=self.Iphone)
+        elif sub_category == "Samsung":
+            self.ComboProduct.config(values=self.Samsung)
+        elif sub_category == "Nothing":
+            self.ComboProduct.config(values=self.Nothing)
+        elif sub_category == "RealMe":
+            self.ComboProduct.config(values=self.RealMe)
+        elif sub_category == "OnePlus":
+            self.ComboProduct.config(values=self.OnePlus)
+        else:
+            self.ComboProduct.config(values=[])  # Default empty if nothing matches
 
-        if self.ComboSubCategory.get()=="Sumsung":
-            self.ComboProduct.config(value=self.Samsung)
-            self.ComboProduct.current(0)
-        
-        if self.ComboSubCategory.get()=="Nothing":
-            self.ComboProduct.config(value=self.Nothing)
-            self.ComboProduct.current(0)
+        self.ComboProduct.current(0)
 
-        if self.ComboSubCategory.get()=="RealMe":
-            self.ComboProduct.config(value=self.RealMe)
-            self.ComboProduct.current(0)
-
-        if self.ComboSubCategory.get()=="OnePlus":
-            self.ComboProduct.config(value=self.OnePlus)
-            self.ComboProduct.current(0)
 
 
     def price(self, event=""):
+        product = self.ComboProduct.get()
+        print(f"product: {product}")
+
         # Pant
         if self.ComboProduct.get()=="Levis":
             self.ComboPrice.config(value=self.price_levis)
-            self.ComboPrice.current (0)
+            self.ComboPrice.current(0)
             self.qty.set(1)
 
         if self.ComboProduct.get()=="Mufti":

@@ -1,0 +1,10 @@
+It Welcome SUSHIL'S Mini Mall
+ Bill Number:5034
+ Customer Name:
+ Phone Number:
+ Customer Email:
+=====================================================
+ Products			QTY	Price
+=====================================================
+
+ Roadster		1		1800

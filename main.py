@@ -11,7 +11,7 @@ class Bill_App:
 
     def __init__(self,root):
         self.root=root
-        self.root.geometry("1530x900+0+0")
+        self.root.geometry("1440x900+0+0")
         self.root.title("Billing Software")
 
         # ================= Variables ===================
@@ -187,7 +187,7 @@ class Bill_App:
 
         self.ComboProduct=ttk.Combobox(Product_Frame,textvariable=self.product,state="readonly",font=('arial',10,'bold'),width=24)
         self.ComboProduct.grid(row=2,column=1,sticky=W,padx=5,pady=2)
-        self.ComboProduct.bind("<<ComboboxSelected>>",self.prices)
+        self.ComboProduct.bind("<<ComboboxSelected>>",self.price_add)
 
         # Price
         self.lblPrice=Label(Product_Frame,font=('arial',12,'bold'),bg="white",text="Price",bd=4)
@@ -303,7 +303,7 @@ class Bill_App:
 
     def welcome (self):
         self.textarea.delete(1.0,END)
-        self.textarea.insert(END,"It Welcome CodeWithkiran Mini Mall") 
+        self.textarea.insert(END,"It Welcome SUSHIL'S Mini Mall") 
         self.textarea.insert(END,f"\n Bill Number:{self.bill_no.get()}") 
         self.textarea.insert(END,f"\n Customer Name:{self.c_name.get()}") 
         self.textarea.insert(END,f"\n Phone Number:{self.c_phon.get()}") 
@@ -451,7 +451,7 @@ class Bill_App:
 
 
 
-    def price(self, event=""):
+    def price_add(self, event=""):
         product = self.ComboProduct.get()
         print(f"product: {product}")
 

@@ -1,0 +1,10 @@
+It Welcome SUSHIL'S Mini Mall
+ Bill Number:6841
+ Customer Name:
+ Phone Number:
+ Customer Email:
+=====================================================
+ Products			QTY	Price
+=====================================================
+
+ Jack&Jones		1		1700

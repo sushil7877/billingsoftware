@@ -14,6 +14,7 @@ class Bill_App:
         self.root.geometry("1440x900+0+0")
         self.root.title("Billing Software")
 
+
         # ================= Variables ===================
         self.c_name=StringVar()
         self.c_phon=StringVar()
@@ -246,7 +247,7 @@ class Bill_App:
         RightLabelFrame.place(x=1000,y=45,width=480,height=440)
 
         scroll_y=Scrollbar(RightLabelFrame,orient=VERTICAL)
-        self. textarea=Text(RightLabelFrame,yscrollcommand=scroll_y.set,bg="white", fg="blue",font=("times new roman",12,"bold")) 
+        self.textarea=Text(RightLabelFrame,yscrollcommand=scroll_y.set,bg="white", fg="blue",font=("times new roman",12,"bold")) 
         scroll_y.pack(side=RIGHT,fill=Y)
         scroll_y.config(command=self.textarea.yview)
         self.textarea.pack(fill=BOTH, expand=1)
@@ -258,20 +259,23 @@ class Bill_App:
         self.lblSubTotal=Label(Bottom_Frame,font=('arial',12,'bold'),bg="white",text="Sub Total",bd=4,fg="black")
         self.lblSubTotal.grid(row=0,column=0,sticky=W,padx=5,pady=2)
 
-        self.EntySubTotal=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
+        self.EntySubTotal = ttk.Entry(Bottom_Frame, textvariable=self.sub_total, font=('arial',10,'bold'),width=24) 
         self.EntySubTotal.grid(row=0,column=1,sticky=W,padx=5,pady=2)
 
         self.lbl_tax=Label(Bottom_Frame, font=('arial',12,'bold'),bg="white",text="Gov Tax",bd=4,fg="black")
         self.lbl_tax.grid(row=1,column=0,sticky=W,padx=5,pady=2)
-                        
-        self.txt_tax=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
+
+        self.txt_tax = ttk.Entry(Bottom_Frame, textvariable=self.tax_input, font=('arial',10,'bold'),width=24)                
+        #self.txt_tax=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
         self.txt_tax.grid(row=1,column=1,sticky=W,padx=5,pady=2)
 
         self.lblAmountTotal=Label(Bottom_Frame,font=('arial',12,'bold'),bg="white",text="Total",bd=4,fg="black")
         self.lblAmountTotal.grid(row=2,column=0,sticky=W,padx=5,pady=2)
 
-        self.txtAmountTotal=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
+        self.txtAmountTotal = ttk.Entry(Bottom_Frame, textvariable=self.total, font=('arial',10,'bold'),width=24)
+        #self.txtAmountTotal=ttk.Entry(Bottom_Frame,font=('arial',10,'bold'),width=24) 
         self.txtAmountTotal.grid(row=2,column=1,sticky=W,padx=5,pady=2)
+
 
         # Button frame
         Btn_Frame=Frame(Bottom_Frame,bd=2,bg="white")
@@ -296,10 +300,21 @@ class Bill_App:
         self.BtnExit.grid(row=0,column=5)
         self.welcome()
 
-        # self.item_prices = []
-        #       self.1=[]
+        if not hasattr(self, 'item_prices'):
+            self.item_prices = []
+            self.item_prices.append(self.m)
+
+        sub_total = sum(self.item_prices)
+        tax = (sub_total * tax) / 100
+        total = sub_total + tax
+
+        self.sub_total.set(f"{sub_total:.2f}")
+        self.tax_input.set(f"{tax:.2f}")
+        self.total.set(f"{total:.2f}")
+
+
         
-        # =======================Function Declaration====================
+        #=======================Function Declaration====================
 
     def welcome (self):
         self.textarea.delete(1.0,END)
@@ -335,7 +350,7 @@ class Bill_App:
         if self.product.get ()=="":
             messagebox.showerror("Error","Please Add To Cart Product")
         else:
-            # text=self.textarea.get(10.0,(10.0+float(len(self.1)))) 
+            text=self.textarea.get(10.0,(10.0+float(len(self.cart_list)))) 
             self.welcome()
             self.textarea.insert(END,text)
             self.textarea.insert(END,f"\n===============================================")
@@ -437,7 +452,7 @@ class Bill_App:
         elif sub_category == "Iphone":
             self.ComboProduct.config(values=self.Iphone)
         elif sub_category == "Samsung":
-            self.ComboProduct.config(values=self.Samsung)
+            self.ComboProduct.config(values=self.samsunng)
         elif sub_category == "Nothing":
             self.ComboProduct.config(values=self.Nothing)
         elif sub_category == "RealMe":

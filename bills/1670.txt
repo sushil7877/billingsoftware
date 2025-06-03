@@ -1,0 +1,12 @@
+It Welcome SUSHIL'S Mini Mall
+ Bill Number:1670
+ Customer Name:
+ Phone Number:
+ Customer Email:
+=====================================================
+ Products			QTY	Price
+=====================================================
+
+ Levis		1		5000
+ Mufti		1		7000
+ Mufti		1		7000
